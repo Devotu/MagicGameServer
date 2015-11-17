@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import web
+import logging
 
 print "GetService invoked"
 
@@ -15,6 +16,8 @@ class index:
 
 class getdatabase:
     def GET(self, dbname):
+		logging.basicConfig(filename='getlog.log',level=logging.INFO)
+		logging.info('Database [%s] requested', dbname)
 		raise web.seeother('/static/' + dbname + '.mgt')
 
 if __name__ == "__main__":

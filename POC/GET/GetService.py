@@ -2,12 +2,13 @@
 # -*- coding: utf-8 -*-
 
 import web
+import sqlite3
 import logging
 
 print "GetService invoked"
 
 urls = ('/', 'index',
-        '/getdatabase/(.+)', 'getdatabase')
+        '/getdatabase', 'getdatabase')
 app = web.application(urls, globals())
 
 class index:
@@ -15,10 +16,20 @@ class index:
         return "The address /getdatabase/xxx returns a database where xxx is the database name"
 
 class getdatabase:
-    def GET(self, dbname):
+    def GET(self):
 		logging.basicConfig(filename='getlog.log',level=logging.INFO)
-		logging.info('Database [%s] requested', dbname)
-		raise web.seeother('/static/' + dbname + '.mgt')
+
+		request = web.input(user="xxx", pwd='xxx', db='xxx')
+		logging.info("user: "+ request.user +", pwd: "+ request.pwd +", db: "+ request.db)
+
+		connection = sqlite3.connect('Users.mgt')
+		cursor = connection.cursor()
+		
+		n = (request.db,)
+		cursor.execute('SELECT * FROM Databases WHERE Name=?', n)
+		logging.info('matching rows: ' + str(cursor.rowcount))
+
+		raise web.seeother('/static/' + request.db + '.mgt')
 
 if __name__ == "__main__":
     app.run()

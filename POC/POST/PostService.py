@@ -18,7 +18,9 @@ class postdatabase:
 		post = web.input(thefile={})
 		
 		if 'thefile' in post:
-			filename = os.getcwd() +'/Databases/'+ post['thefile'].filename
+			#web.debug(post['thefile'].filename)
+			filename = os.getcwd() +'/Databases/'+ 'databas.mgt'
+			web.debug(filename)
 			fout = open(filename,'w+')
 			fout.write(post.thefile.file.read())
 			fout.close()

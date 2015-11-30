@@ -1,0 +1,41 @@
+{"tables":[
+	{"alterations":[
+		{
+			"alteration_id":x,
+			"deck_id":x,
+			"date":"sss",
+			"revision":x,
+			"comment":"sss"
+		}
+	]},
+	{"decks":[
+		{
+			"deck_id":x,
+			"name":"sss",
+			"format":"sss",
+			"colorset":"sss",
+			"theme":"sss",
+			"active":x,
+			"date":"sss"
+		}
+	]},
+	{"games":[
+		{
+			"game_id":x,
+			"deck_id":x,
+			"win":x,
+			"colorset":"sss",
+			"comment":"sss",
+			"date":"sss",
+			"opponent_id":x,
+			"performancerating":x
+		}
+	]},
+	{"opponents":[
+		{
+			"opponent_id":x,
+			"name":"sss"
+		}
+	]}
+]
+}

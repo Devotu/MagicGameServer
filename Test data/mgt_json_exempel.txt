@@ -1,0 +1,60 @@
+{"tables":[
+	{"alterations":[
+		{
+			"alteration_id":1,
+			"deck_id":1,
+			"date":"20150102",
+			"revision":1,
+			"comment":"Deck created"
+		}
+	]},
+	{"decks":[
+		{
+			"deck_id":1,
+			"name":"Ettan",
+			"format":"Standard",
+			"colorset":"10000",
+			"theme":"Svart lek",
+			"active":1,
+			"date":"20150102"
+		},
+		{
+			"deck_id":2,
+			"name":"Duo",
+			"format":"Block",
+			"colorset":"00001",
+			"theme":"Grön lek",
+			"active":0,
+			"date":"20150103"
+		}
+	]},
+	{"games":[
+		{
+			"game_id":1,
+			"deck_id":1,
+			"win":1,
+			"colorset":"01000",
+			"comment":"Svart mot vit",
+			"date":"20150202",
+			"opponent_id":1,
+			"performancerating":4
+		},
+		{
+			"game_id":2,
+			"deck_id":1,
+			"win":0,
+			"colorset":"00100",
+			"comment":"Svart mot röd",
+			"date":"20150203",
+			"opponent_id":1,
+			"performancerating":2
+		}
+	]},
+	{"opponents":[
+		{
+			"opponent_id":1,
+			"name":"Topias"
+		}
+	]}
+]
+}

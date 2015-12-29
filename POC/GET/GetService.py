@@ -8,7 +8,8 @@ import logging
 print "GetService invoked"
 
 urls = ('/', 'index',
-        '/getdatabase', 'getdatabase')
+        '/getdatabase', 'getdatabase',
+		'/getjson', 'getjson')
 app = web.application(urls, globals())
 
 class index:
@@ -35,7 +36,33 @@ class getdatabase:
 			else:
 				return "DatabaseDoesNotExist"
 		else:
-			return "UserOrPasswordIncorrect"		
+			return "UserOrPasswordIncorrect"
+
+class getjson:
+	def GET(self):
+		tables = ['Alterations', 'Decks', 'Games', 'Opponents']
+		jsonTables = []
+
+		request = web.input(user="xxx", pwd='xxx', db='xxx')
+
+		usersConnection = sqlite3.connect('Users.mgt')
+		userCursor = usersConnection.cursor()
+
+		u = (request.user, request.pwd)
+		userCursor.execute('SELECT * FROM Users WHERE Username=? AND Password=?', u)
+		if len(userCursor.fetchall()) == 1:
+			n = (request.db,)
+			userCursor.execute('SELECT Name FROM Databases WHERE Name=?', n)
+			requestedDatabaseRow = userCursor.fetchall()
+			if len(requestedDatabaseRow) == 1:
+				web.debug(str(requestedDatabaseRow[0][0]) + '.mgt')
+				dataConnection = sqlite3.connect(str(requestedDatabaseRow[0][0]) + '.mgt')
+				dataCursor = dataConnection.cursor()
+
+				for table in tables:
+					dataCursor.execute('SELECT * FROM ' + table)
+					web.debug(table)
+
 
 if __name__ == "__main__":
     app.run()
